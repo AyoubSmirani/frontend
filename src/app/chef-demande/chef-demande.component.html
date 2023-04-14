@@ -1,0 +1,89 @@
+<app-chef-navbar></app-chef-navbar>
+<div class="sample-split">
+    <igx-buttongroup [values]="modes" (selected)="toggleModes($event)">
+    </igx-buttongroup>
+</div>
+
+<igx-stepper #stepper [linear]="linear">
+
+    <ng-template igxStepActiveIndicator>
+        <igx-icon>edit</igx-icon>
+    </ng-template>
+
+    <igx-step #step1 >
+        <span igxStepTitle>type de congée</span>
+        <div igxStepContent>
+            <!--<form #form1="ngForm">-->
+                <igx-select #select [(ngModel)]="user.item" >
+                    <label igxLabel>type du congée</label>
+                    <igx-select-item *ngFor="let item of user.items" [value]="item" required>
+                        {{item}}
+                    </igx-select-item>
+                </igx-select>
+                <p class="err" *ngIf="user.item === ''">* ce champ ne doit pas etre vide</p>
+           <!-- </form>-->
+            <div class="sample-step-actions">
+                <button class="btn" igxButton="raised" (click)="stepper.next()"
+                    [disabled]="stepper.linear">suivant</button>
+            </div>
+        </div>
+    </igx-step>
+
+    <igx-step #step2 >
+        <span igxStepTitle>durée du congée</span>
+        <div igxStepContent>
+          
+               
+                    <igx-date-picker [(ngModel)]="user.dateDepart"  required>
+                        <label igxLabel>Date du début</label>
+                    </igx-date-picker>
+         
+                    <igx-date-picker [(ngModel)]="user.dateRetour" required>
+                        <label igxLabel>Date du fin</label>
+                    </igx-date-picker>
+      <div class="err" *ngIf="!isDateRetourSupDateDepart()">*les dates ne doivent pas étre dépassé La date de retour doit être supérieur à la date de départ.</div>
+         
+                 
+     
+           
+            <div class="sample-step-actions">
+                <button class="btn" igxButton="raised" (click)="stepper.prev()">précédent</button>
+                <button class="btn" igxButton="raised" (click)="stepper.next()"
+                    [disabled]="stepper.linear"  >suivant</button>
+            </div>
+        </div>
+    </igx-step>
+
+ 
+
+
+
+    <igx-step #step3>
+        <span igxStepTitle>confirmation</span>
+        <div igxStepContent>
+           
+            <input style="color: black;
+            background-color: rgb(0, 145, 255);" type="file" (change)="selectImage($event)" required >
+            <p class="err" *ngIf="!controleFileType">* le type de l'image doit étre jpg ou png </p>
+            <p class="err" *ngIf="!controleFileSize">* la taile de l'image ne doit pas dépasser 2mg</p>
+            
+
+            <div class="sample-step-actions">
+                <button class="btn" igxButton="raised" (click)="stepper.prev()">précédent</button>
+                <button class="btn" igxButton="raised" (click)="stepper.reset()">Reset</button>
+                <button class="btn" igxButton="raised" (click)="sendData()"  (click)="alert.open()">confirme</button>
+                <igx-dialog #alert
+                [title]="Alerttitle"
+                [message]="message "
+                leftButtonLabel="OK"
+                leftButtonColor="black"
+                leftButtonBackgroundColor="#0091FF"
+                (leftButtonSelect)="alert.close()" >
+                </igx-dialog>
+            </div>
+        </div>
+    </igx-step>
+
+    
+
+</igx-stepper>

@@ -1,0 +1,17 @@
+.chat{
+    width: 500px;
+    height: 500px;
+}
+.example-container {
+    height: 311px;
+    overflow: auto;
+    border: 1px solid #ccc;
+  }
+  .sendContainer{
+    margin-top: 15px;
+    display: flex;
+  }
+  mat-form-field{
+    width: 400px;
+    margin-right: 20px;
+  }

@@ -1,0 +1,99 @@
+.leftSideContainer{
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+.userDesc{
+    width: 200px;
+    height: 200px;
+    display: flex;
+    border: 0.25px solid rgba(1, 1, 1, 0.132);
+    flex-direction: column;
+    margin: 30px 22px;
+    align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    border-radius: 10px;
+}
+.img{
+margin-top: 12px;
+}
+.img img{
+    width: 80px;
+    height:80px ;
+    border-radius: 80px;
+}
+
+.content{
+display:flex ;
+flex-direction: column;
+align-items: center;
+transform: translateY(-30px);
+}
+
+.content h3{
+    color: rgb(0, 15, 128);
+    font-size: 20px;
+}
+.content p {
+    transform: translateY(-30px);
+}
+
+.CalendarColorInfo{
+    width: 200px;
+    height: 100px;
+    display: flex;
+    border: 0.25px solid rgba(1, 1, 1, 0.132);
+    flex-direction: column;
+    margin: auto 22px; 
+    justify-content: center;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    border-radius: 10px;
+}
+
+.CalendarColorInfo .congee h3{
+    color: #DC143C;
+    margin-left: 4px;
+    font-size: 17px;
+    
+}
+.CalendarColorInfo .congee{
+    display: flex;
+    margin-left: 7px;
+    transform: translateY(20px);
+
+}
+.CalendarColorInfo .formation{
+    display: flex;
+    margin-left: 7px;
+    transform: translateY(-15px);
+
+}
+.CalendarColorInfo .formation h3{
+    color:blue; 
+    margin-left: 4px;
+    font-size: 17px;
+    transform: translateY(-20px);
+}
+.color{
+   width: 30px;
+   height: 10px;
+   border-radius: 5px;
+   transform: translateY(15px);
+
+}
+@media screen and (max-width: 600px) {
+    .leftSideContainer{
+      margin: auto 15px;
+    }
+    .userDesc{
+        width: 100%;
+        margin: 10px auto ;
+    }
+    .CalendarColorInfo{
+        width: 99%;
+        margin: auto;
+    }
+    
+    }

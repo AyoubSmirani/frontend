@@ -1,0 +1,38 @@
+<div class="tableContainer">
+  <igx-input-group type="search">
+    <input #input1 igxInput [(ngModel)]="searchText" placeholder="...recherche" />
+    <igx-prefix>
+        <igx-icon>search</igx-icon>
+    </igx-prefix>
+    <igx-suffix *ngIf="input1.value.length > 0" (click)="input1.value = ''">
+        <igx-icon>clear</igx-icon>
+    </igx-suffix>
+</igx-input-group>
+
+<table>
+   <!-- <caption>la liste des formations</caption>-->
+    <thead >
+      <tr>
+        <th scope="titre">titre</th>
+        <th scope="nom de centre">nom de centre</th>
+        <th scope="début de formation">début de formation</th>
+        <th scope="fin de formation">fin de formation</th>  
+        <th scope="durée">durée</th>
+      </tr>
+    </thead>
+    <tbody >
+      <tr *ngFor="let i of data | filterformation: searchText | paginate: { itemsPerPage: perPage, currentPage: currentPage, totalItems: totalRecords }" >
+        <td data-label="titre">{{i.title}}</td>
+        <td data-label="nom de centre">{{i.nomCentre}}</td>
+        <td data-label="début de formation"  >{{formatDate(i.start)}}</td>
+        <td data-label="fin de formation">{{formatDate(i.end)}}</td>
+        <td data-label="durée">{{i.duree}} jour</td>
+   
+      </tr>
+     
+    </tbody>
+  </table>
+  <div class="paginateContainer">
+  <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
+  </div>
+</div>

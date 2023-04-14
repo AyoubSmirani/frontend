@@ -1,0 +1,79 @@
+<div class="container">
+    <button class="ajout-btn"  (click)="form.open()">ajouter un employée</button>
+    </div>
+    <igx-dialog #form [closeOnOutsideSelect]="true">
+        <div class="imageUpload">
+            <img [src]="imagePath"  alt="Uploaded Image">
+              <div class="file-upload">
+                <i-bs name="camera" width="32" height="32" style="transform: translateY(-10px);" ></i-bs>
+                <input type="file" (change)="selectImage($event)" />
+                
+              </div>    
+            </div> 
+            
+        <div class="form">
+            <igx-input-group>
+                <input igxInput name="matricule" type="text" [(ngModel)]="employee.matricule"  />
+                <label igxLabel for="matricule" >matricule</label>
+            </igx-input-group>
+
+            <igx-input-group>
+                <input igxInput name="nom et prénom" type="text" [(ngModel)]="employee.nomPrenom"  />
+                <label igxLabel for="nom et prénom" >nom et prénom</label>
+            </igx-input-group>
+            
+    
+            <igx-input-group>
+                <input igxInput name="email" type="email" [(ngModel)]="employee.email"  />
+                <label igxLabel for="email">email</label>
+            </igx-input-group>
+    
+            <igx-input-group>
+                <input igxInput name="poste" type="text" [(ngModel)]="employee.poste"  />
+                <label igxLabel for="poste">poste</label>
+            </igx-input-group>
+            
+            <igx-select [(ngModel)]="employee.sexe">
+                <label igxLabel>sexe</label>
+                <igx-select-item   *ngFor="let i of SelectEmployeeSexe" [value]="i" >
+                    {{i}}
+                </igx-select-item>
+              </igx-select>
+
+            <igx-input-group>
+                <input igxInput name="statue social" type="text" [(ngModel)]="employee.statue"    />
+                <label igxLabel for="statue social">statue social</label>
+            </igx-input-group>
+
+            <igx-select [(ngModel)]="employee.role">
+                <label igxLabel>role</label>
+                <igx-select-item   *ngFor="let i of SelectEmployeeRole" [value]="i" >
+                    {{i}}
+                </igx-select-item>
+              </igx-select>
+            
+              <igx-select [(ngModel)]="employee.SchefEquipe">
+                <label igxLabel>chef département</label>
+                <igx-select-item   *ngFor="let i of SelectChef" [value]="i.nomPrenom" >
+                    {{i.nomPrenom}}
+                </igx-select-item>
+              </igx-select>
+    
+            <igx-input-group>
+                <igx-prefix>+216</igx-prefix>
+                <label igxLabel for="phone">téléphone</label>
+                <input igxInput name="phone" type="tel" [(ngModel)]="employee.telephone"  />
+                <igx-icon igxSuffix>phone</igx-icon>
+            </igx-input-group>
+    
+        
+    
+        </div>
+        <div style="display: flex; justify-content: center;" igxDialogActions>
+            <button class="ajout-btn" (click)="updated()"   (click)="form.close()" >ajouter</button>
+            <button class="ajout-btn"  (click)="form.close()">fermer</button>
+        </div>
+     
+    
+    
+    </igx-dialog>

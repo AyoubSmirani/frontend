@@ -1,0 +1,48 @@
+.calendar{
+    display: flex;
+    flex-direction: column;
+}
+.calendar .calendarInfoDescription{
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  
+}
+.calendar .calendarInfoDescription .title h4{
+    font-size: 26px;
+    color: #444444;
+    font-weight: 500;
+    transform: translateY(-15px);
+    margin-left: 8px;
+}
+.calendar .calendarInfoDescription .description{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+   
+}
+
+
+.calendar .calendarInfoDescription .DesContain{
+    display: flex;
+    transform: translateY(10px);
+}
+.calendar .calendarInfoDescription .description p{
+   transform: translateY(-35px);
+   font-size: 14px;
+}
+
+.calendar .calendarInfoDescription .description h4{
+    display: flex;
+    justify-content: center;
+    
+ }
+
+span{
+    border-radius: 1px;
+    width: 1px;
+    height: 30px;
+    background:#C0C0C0;
+    margin: auto 20px; 
+    transform: translateY(-10px);
+} 

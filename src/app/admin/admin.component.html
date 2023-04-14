@@ -1,0 +1,41 @@
+<div class="admin" style="display: flex; ">
+<app-admin-navbar></app-admin-navbar>
+<div style="width: 100%;  margin-left: 230px;">
+<div style="display: grid;  grid-row-gap: 20px; padding: 20px;">
+<div *ngFor="let i of data">
+ <div  class="accountContainer">
+    <div>
+    <h5 (click)="goToAccount(i.matricule,i.role)" >{{i.nomPrenom}}</h5>
+    <h5>{{i.matricule}}</h5>
+    <h5>{{i.email}}</h5>
+    <h5>{{decode(i.password)}}</h5>
+    <button class="modifier-btn" (click)="update(i.email,i.password,i.matricule)" (click)="form.open()" >modifier</button>
+    </div>
+ </div>
+</div>
+</div>
+</div>
+<igx-dialog #form [closeOnOutsideSelect]="true">
+
+   <div>
+   <igx-input-group>
+      <label igxLabel for="adresse">adresse</label>
+      <input igxInput name="adresse" type="text" [(ngModel)]="user.email"  />
+  </igx-input-group>
+  <igx-input-group>
+   <label igxLabel for="mot de passe">mot de passe</label>
+   <input igxInput name="mot de passe"  type="password" [(ngModel)]="user.newPassword"  />
+</igx-input-group>
+
+
+
+
+<div style="display: flex; justify-content: center;" igxDialogActions>
+  <button class="ajout-btn" (click)="updated()"   (click)="form.close()" >modifier</button>
+  <button class="ajout-btn"  (click)="form.close()">fermer</button>
+</div>
+</div>
+
+</igx-dialog>
+
+</div>

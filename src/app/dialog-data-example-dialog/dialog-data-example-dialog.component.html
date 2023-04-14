@@ -1,0 +1,33 @@
+<div class="chat">
+<h1 style="background-color: rgba(0, 225, 255, 0.873);" mat-dialog-title>
+    chat
+</h1>
+<div mat-dialog-content>
+ 
+
+    <div class="example-container" cdkScrollable  >
+    <div *ngFor="let array of messageStorage">  
+          <p>{{array.send}}</p>
+           <p>{{array.receive}}</p>
+          </div>
+      </div>
+
+
+    <div class="sendContainer">
+     
+            <mat-form-field appearance="outline">
+              <mat-label>ask a question</mat-label>
+              <input matInput [(ngModel)]="user.message" >
+            </mat-form-field>
+
+            <button (click)="sendMessage()" mat-flat-button style="height: 55px;  background-color:rgba(0, 225, 255, 0.873); color: white; display: flex; justify-content: center;">
+                <i-bs name="send"  
+                      width="35px"
+                      height="35px">
+                   </i-bs>
+                   </button>
+   
+    </div>
+
+</div>
+</div>

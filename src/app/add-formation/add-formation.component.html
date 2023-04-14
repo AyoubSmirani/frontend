@@ -1,0 +1,62 @@
+<div class="container">
+  <!-- Le bouton qui ouvre le formulaire -->
+<button igxButton="raised" igxRipple="white" class="btn"  (click)="form.open()">ajouter formation</button>
+</div>
+
+<!-- La boîte de dialogue pour ajouter une formation -->
+<igx-dialog #form [closeOnOutsideSelect]="true">
+ 
+        <div class="title-container">     
+            <h5 >ajouter formation</h5>
+        </div>
+
+        
+<!-- Le formulaire -->
+    <form class="signInForm">
+      <div>
+        <p class="err" *ngIf="formation.title === ''">*</p>
+        <igx-input-group>
+            <label igxLabel for="title">titre du formation</label>
+            <input igxInput id="title" type="text" [(ngModel)]="formation.title" [ngModelOptions]="{standalone: true}" />
+        </igx-input-group>
+          
+      </div>
+
+      <div> 
+        
+        <igx-input-group>
+          <p class="err" *ngIf="formation.nomCentre === ''">*</p> 
+            <label igxLabel for="nomDeCentre">nom de centre du formation</label>
+            <input igxInput id="nomDeCentre" type="text" [(ngModel)]="formation.nomCentre"  [ngModelOptions]="{standalone: true}"/>
+        </igx-input-group>
+        
+      </div>
+      
+      <div>
+        <igx-date-picker [(ngModel)]="formation.start"  [ngModelOptions]="{standalone: true}" required>
+            <label igxLabel>Date de début</label>
+        </igx-date-picker>
+      </div>
+      
+      <div>
+        <igx-date-picker [(ngModel)]="formation.end" [ngModelOptions]="{standalone: true}" required>
+            <label igxLabel>Date de fin</label>
+        </igx-date-picker>
+      </div>
+      <div class="err" *ngIf="!isDateRetourSupDateDepart()">*les dates ne doivent pas étre dépassé La date de retour doit être supérieur à la date de départ.</div> 
+    </form>
+
+    <div style="display: flex; justify-content: center;" igxDialogActions>
+        <button class="btn" igxButton (click)="form.close()">fermer</button>
+        <button class="btn" igxButton (click)="form.close()" (click)="signIn(formation,alert)" [disabled]="!isFormValid()" >ajouter</button>
+    </div>
+    <igx-dialog #alert
+    title="confirmation"
+    message="la formation a été ajouté avec success actualiser la page pour la voir"
+    leftButtonLabel="OK"
+    leftButtonColor="black"
+    leftButtonBackgroundColor="#0091FF"
+    (leftButtonSelect)="alert.close()" >
+    </igx-dialog>
+    
+</igx-dialog>

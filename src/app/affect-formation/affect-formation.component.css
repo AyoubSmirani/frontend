@@ -1,0 +1,29 @@
+.container{
+	display: flex;
+	width: 100%;
+	justify-content: center;
+	align-items: center;
+	height: 180px;
+}
+.btn{
+	color: black;
+	background-color: rgb(0, 145, 255);
+}
+.title-container{
+	display: flex;
+	justify-content: center;
+}
+.title-container h5{
+	color: black;
+}
+.signInForm{
+	width: 500px;
+	
+}
+.signInForm div{
+	margin: 20px auto;
+}
+.err{
+	color: red !important;
+	font-size: 15px;
+}

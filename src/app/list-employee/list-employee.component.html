@@ -1,0 +1,116 @@
+<app-rh-navbar></app-rh-navbar>
+<app-affect-formation></app-affect-formation>
+<div class="listEmployeeContainer">
+<div class="search">
+<app-ajouter-employe></app-ajouter-employe>        
+<igx-input-group type="search">
+    <input #input1 igxInput [(ngModel)]="searchText" placeholder="...recherche" />
+    <igx-prefix>
+        <igx-icon>search</igx-icon>
+    </igx-prefix>
+    <igx-suffix *ngIf="input1.value.length > 0" (click)="input1.value = ''">
+        <igx-icon>clear</igx-icon>
+    </igx-suffix>
+</igx-input-group>
+</div>
+<div class="gridList">
+    <div *ngFor="let i of data | filterEmploye:searchText | paginate: { itemsPerPage: perPage, currentPage: currentPage, totalItems: totalRecords }">
+        <div class="card">
+            <img [src]="'http://127.0.0.1:5000/getImage/'+i.image">
+            <div class="info-container">
+            <div class="info">    
+            <h2>{{i.nomPrenom}}</h2>
+            <p>Email: {{i.email}}</p>
+            <p>poste du travail: {{i.poste}}</p>
+            <p>Compte: <span *ngIf="i.compte">Oui</span> <span *ngIf="!i.compte">Non <a style="cursor: pointer; background-color: blue;" (click)="notifier(i.nomPrenom)">notifier admin</a></span></p>
+            <p>Telephone: {{i.telephone}}</p>
+            <p>Sexe: {{i.sexe}}</p>
+            <p>Statue: {{i.statue}}</p>
+            </div>
+          </div>
+          <div class="button-container">
+            <button class="modifier-btn"   (click)="update(i.matricule)" (click)="form.open()">modifier</button>
+            <button class="supprimer-btn" (click)="dialog2.open()" >supprimer</button>
+          </div>
+          </div>
+
+          <igx-dialog #dialog2 title="Confirmation"
+          leftButtonLabel="Cancel"
+          (leftButtonSelect)="dialog2.close()"
+          rightButtonLabel="OK"
+          (rightButtonSelect)="delete(i.matricule)"
+          message="vous étes sure que vous voulez supprimer l'employer ?"
+          leftButtonColor="black"
+          leftButtonBackgroundColor="#0091FF"
+          rightButtonColor="black"
+          rightButtonBackgroundColor="#0091FF"
+          >
+         </igx-dialog>  
+</div>
+
+</div>
+<div class="paginateContainer">
+    <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
+    </div>
+</div>
+<igx-dialog #form [closeOnOutsideSelect]="true">
+    <div class="imageUpload">
+        <img [src]="imagePath"  alt="Uploaded Image">
+          <div class="file-upload">
+            <i-bs name="camera" width="32" height="32" style="transform: translateY(-10px);" ></i-bs>
+            <input type="file" (change)="selectImage($event)" />
+            
+          </div>    
+        </div> 
+    <div class="form">
+     
+        <igx-input-group>
+            <input igxInput name="nom et prénom" type="text" [(ngModel)]="Updatedemployee.nomPrenom"  />
+            <label igxLabel for="nom et prénom" >nom et prénom</label>
+        </igx-input-group>
+        
+
+        <igx-input-group>
+            <input igxInput name="email" type="email" [(ngModel)]="Updatedemployee.email"  />
+            <label igxLabel for="email">email</label>
+        </igx-input-group>
+
+        <igx-input-group>
+            <input igxInput name="poste" type="text" [(ngModel)]="Updatedemployee.poste"  />
+            <label igxLabel for="poste">poste</label>
+        </igx-input-group>
+        
+        
+        <igx-input-group>
+            <input igxInput name="statue social" type="text" [(ngModel)]="Updatedemployee.statue"    />
+            <label igxLabel for="statue social">statue social</label>
+        </igx-input-group>
+        
+        <igx-input-group>
+            <input igxInput name="chef D'equipe" type="text" [(ngModel)]="Updatedemployee.SchefEquipe"   />
+            <label igxLabel for="chef D'equipe">chef D'equipe</label>
+        </igx-input-group>
+
+        <igx-input-group>
+            <igx-prefix>+216</igx-prefix>
+            <label igxLabel for="phone">téléphone</label>
+            <input igxInput name="phone" type="tel" [(ngModel)]="Updatedemployee.telephone"  />
+            <igx-icon igxSuffix>phone</igx-icon>
+        </igx-input-group>
+
+    
+
+    </div>
+    <div style="display: flex; justify-content: center;" igxDialogActions>
+        <button class="modifier-btn" (click)="updated()" (click)="alert.open()"  (click)="form.close()" >mondifier</button>
+        <button class="modifier-btn"  (click)="form.close()">fermer</button>
+    </div>
+    <igx-dialog #alert
+                title="confirmation"
+                message="l'employe a ete modifier avec success"
+                leftButtonLabel="OK"
+                leftButtonColor="black"
+                leftButtonBackgroundColor="#0091FF"
+                (leftButtonSelect)="alert.close()" >
+</igx-dialog>
+</igx-dialog>

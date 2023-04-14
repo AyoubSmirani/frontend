@@ -1,0 +1,66 @@
+<div class="navbar">
+    <div class="logo">
+     <h1>Ci<span>men</span>terie</h1>
+    </div>
+             
+    <div style="display: flex; margin-right: 20px;">
+       
+            <div class="UserDes">
+              <div style="margin-right: 10px;">
+    
+    
+                <div [ngClass]="Notification ? 'Black' : ''"  class="notifBox" (click)="openCloseNotification()" >
+                  <div style="transform: translateY(-2.5px);"> 
+                   <div class="badge">
+                        <div>{{NotificationNotSeenCount}}</div>
+                   </div>
+                     <i-bs name="bell" [ngClass]="Notification ? 'White' : ''"  class="toggle-button"
+                        width="22px"
+                          height="22px" >
+                      </i-bs>
+                     </div>  
+                   </div>
+    
+    
+    
+                   <div  *ngIf="Notification">
+                       
+                     <app-notifications></app-notifications>
+                   
+                   </div> 
+    
+    
+              </div> 
+    
+               <div class="img">
+                <img [src]="'http://127.0.0.1:5000/getImage/' + data.image"  alt="">
+               </div>
+             
+    
+               <div style="display:flex; flex-direction: column;  margin-top: 10px;"> 
+                {{data.nomPrenom}}
+               <div class="dropdown" style="display: flex; justify-content: center;"> 
+                     <i-bs class="dropbtn"  name="chevron-down"
+                            width="15"
+                             height="15">
+                      </i-bs>
+                      
+                       <div class="dropdown-content">
+                        
+                    <!--    <a (click)="employeeDemande()">demmander un congée</a> -->
+                        <a (click)="directeurEquipe()">Demmandes</a>
+                        <a (click)="directeurEquipeDemandeCongee()">Demmander un congée</a>
+                        <a (click)="directeurEquipeVoirDemandeCongee()">voir mes Demmande congée</a>
+                        <a style="border: none; display: flex; " (click)="deconnection()" ><i-bs name="box-arrow-left" width="20" height="20"></i-bs> <div style="line-height: 20px; margin-left: 10px;">déconnection</div></a> 
+                       </div>
+                     
+               </div>  
+               </div>
+    
+    
+    
+    
+           
+            </div>
+    </div>
+    

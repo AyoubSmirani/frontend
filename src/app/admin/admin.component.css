@@ -1,0 +1,31 @@
+.accountContainer{
+    width: 100%;
+    height: 50px ;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.accountContainer div{
+    display: flex;
+    justify-content: space-evenly;
+    transform: translateY(-30%);
+}
+.modifier-btn {
+    transform: translateY(30px);
+    border: none;
+    border-radius: 5px;
+    height: 30px;
+    font-size: 16px;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .modifier-btn {
+    background-color: #28a745;
+  }
+  
+  .modifier-btn:hover {
+    background-color: #218838;
+  }
+  

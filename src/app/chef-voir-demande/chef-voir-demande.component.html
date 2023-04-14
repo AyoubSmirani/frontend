@@ -1,0 +1,38 @@
+<app-chef-navbar></app-chef-navbar>
+<div class="tableContainer">
+    <table>
+        <caption><h3>la liste des demandes du congées</h3></caption>
+        <thead >
+          <tr>
+            <th scope="col">id</th>
+            <th scope="col">début de congée</th>  
+            <th scope="col">fin de congée</th>
+            <th scope="col">type de congée</th>
+            <th scope="col">réponse</th>
+          </tr>
+        </thead>
+        <tbody >
+          <tr *ngFor="let i of data | paginate: { itemsPerPage: perPage, currentPage: currentPage, totalItems: totalRecords }">
+            <td data-label="id">{{i.id}}</td>
+            <td data-label="début de congée">{{formatDate(i.dateD)}}</td>
+            <td data-label="fin de congée">{{formatDate(i.dateF)}}</td>
+            <td data-label="type de congée">{{i.type}}</td>
+            <td data-label="réponse" style="display: flex; justify-content: space-around; ">{{i.confirmation}} 
+                <div [ngSwitch]="i.confirmation">            
+                    <div *ngSwitchCase="'refusé'" ><i-bs name="x-circle-fill" style="color: red;" width="25" height="25"></i-bs></div>
+                    <div *ngSwitchCase="'en attente'"><div class="lds-facebook"><div></div><div></div><div></div></div></div>
+                    <div *ngSwitchCase="'confirmé'"> <i-bs name="check-circle-fill"  width="25" style="color: green;" height="25"></i-bs></div>
+                    <div *ngSwitchCase="'confirmé par le chef'"> <i-bs name="check-circle-fill"  width="25" style="color: rgb(251, 255, 0);" height="25"></i-bs></div>
+                </div>
+                
+                 </td>
+      
+         
+          </tr>
+        
+        </tbody>
+      </table>
+      <div class="paginateContainer">
+        <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
+        </div>
+    </div>

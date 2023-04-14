@@ -1,0 +1,83 @@
+<app-rh-navbar></app-rh-navbar>
+
+
+
+<div class="tableContainer">
+  <div class="tableHelp">
+  <igx-input-group type="search">
+      <input #input1 igxInput [(ngModel)]="searchText" placeholder="...recherche" />
+      <igx-prefix>
+          <igx-icon>search</igx-icon>
+      </igx-prefix>
+      <igx-suffix *ngIf="input1.value.length > 0" (click)="input1.value = ''">
+          <igx-icon>clear</igx-icon>
+      </igx-suffix>
+  </igx-input-group>
+
+
+
+  <igx-select [(ngModel)]="selectedResponse">
+    <label igxLabel>RÉPONSE</label>
+    <igx-select-item *ngFor="let i of listResponse" [value]="i">
+        <div style="display: flex;">
+            {{i.confirmation}} 
+            <i-bs [name]="i.iconName" style="margin-left: 10px;" [style]="i.iconcolor" width="25" height="25"></i-bs>
+        </div>
+    </igx-select-item>
+    <div style="display: flex;">
+      <div *ngIf="selectedResponse">
+        {{selectedResponse.confirmation}}
+        <i-bs [name]="selectedResponse.iconName" style="margin-left: 10px;" [style.color]="selectedResponse.iconColor" width="25" height="25"></i-bs>
+      </div>
+    </div>
+</igx-select>
+
+  </div>
+    <table>
+      <!--  <caption>la liste des demandes du congées</caption>-->
+        <thead >
+          <tr>
+            <th scope="col">matricule</th>
+            <th scope="col">nom et prénom</th>
+            <th scope="col">image</th>
+            <th scope="col">début de congée</th>  
+            <th scope="col">fin de congée</th>
+            <th scope="col">type de congée</th>
+            <th scope="col">justification</th>  
+            <th scope="col">réponse</th>
+            <th scope="col">action</th>
+          </tr>
+        </thead>
+        <tbody >
+          <tr *ngFor="let i of data|  filter: { searchText: searchText, selectedResponse: selectedResponse } | paginate: { itemsPerPage: perPage, currentPage: currentPage, totalItems: totalRecords }">
+            <td data-label="titre">{{i.matricule}}</td>
+            <td data-label="nom et prénom">{{i.nomPrenom}}</td>
+            <td data-label="image"  ><img style="width: 50px; height: 50px; border-radius: 50px;" [src]="'http://127.0.0.1:5000/getImage/' + i.image" /></td>
+            <td data-label="début de congée">{{formatDate(i.dateD)}}</td>
+            <td data-label="fin de congée">{{formatDate(i.dateF)}}</td>
+            <td data-label="type de congée">{{i.type}}</td>
+            <td data-label="justification"><button igxButton class="btn" (click)="toggleContent(i.justification)">voir</button></td>
+            <td data-label="réponse" style="display: flex; justify-content: space-around; ">{{i.confirmation}} 
+                <div [ngSwitch]="i.confirmation">
+                    
+                    <div *ngSwitchCase="'refusé'" ><i-bs name="x-circle-fill" style="color: #dc3545" width="25" height="25"></i-bs></div>
+                    <div *ngSwitchCase="'en attente'"><div class="lds-facebook"><div></div><div></div><div></div></div></div>
+                    <div *ngSwitchCase="'confirmé'"> <i-bs name="check-circle-fill"  width="25" style="color:#28a745 " height="25"></i-bs></div>
+                </div>
+                
+                 </td>
+            <td *ngIf="i.confirmation === 'confirmé par le chef' || i.confirmation === 'en attente'" data-label="action">
+              <div style="display: flex;">
+                <button class="action AcceptBtn" (click)="repondre(i.matricule,i.id,'confirmé')">accepter</button>
+                <button  class="action RefuseBtn" (click)="repondre(i.matricule,i.id,'refusé')">Refuser</button> 
+              </div>  
+            </td>
+         
+          </tr>
+        
+        </tbody>
+      </table>
+      <div class="paginateContainer">
+        <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
+        </div>
+    </div>

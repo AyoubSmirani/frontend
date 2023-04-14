@@ -1,0 +1,21 @@
+
+<div>
+  <mat-card>
+    <mat-card-title>Login</mat-card-title>
+<mat-card-content>
+       
+        <p class="err" *ngIf="err">* votre adresse email ou mot de passe est incorrect</p>
+        <mat-form-field class="example-full-width">
+          <mat-label>adresse email</mat-label>
+          <input [(ngModel)]="user.email" matInput placeholder="azx@gmail.com" value="Sushi">
+         </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>mot de passe</mat-label>
+           <input [(ngModel)]="user.password" matInput type="password" placeholder="mot de passe" value="Sushi">
+         </mat-form-field>
+  
+         <button mat-raised-button style="margin-top: 40px;" (click)="login()">s'authentifier</button>
+</mat-card-content>
+  </mat-card>
+</div>

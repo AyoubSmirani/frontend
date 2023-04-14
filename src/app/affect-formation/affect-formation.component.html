@@ -1,0 +1,38 @@
+<div class="container">
+<button class="btn" igxButton="raised" igxRipple="white" (click)="form.open()">Affecter formation</button>
+</div>
+<igx-dialog #form [closeOnOutsideSelect]="true">
+    
+        <div class="title-container">
+            <h5>affecter une formation aus poste</h5>
+        </div>
+
+
+ <div class="signInForm">
+    <div>
+      <igx-select [(ngModel)]="formationA.idformation">
+        <label igxLabel>liste des fomation existant</label>
+        <igx-select-item *ngFor="let item of listF" [value]="item.id" >
+            {{item.title}}
+        </igx-select-item>
+      </igx-select>
+    </div>
+
+    <div>  
+      <igx-select [(ngModel)]="formationA.poste">
+        <label igxLabel>liste des poste</label>
+        <igx-select-item   *ngFor="let i of listP" [value]="i.poste" >
+            {{i.poste}}
+        </igx-select-item>
+      </igx-select>
+    </div>   
+ </div>
+
+
+    <div style="display: flex; justify-content: center;" igxDialogActions>
+        <button class="btn" igxButton (click)="form.close()">fermer</button>
+        <button class="btn" igxButton (click)="form.close()" (click)="affect(formationA)">ajouter</button>
+    </div>
+
+
+</igx-dialog>

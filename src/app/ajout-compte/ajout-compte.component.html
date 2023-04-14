@@ -1,0 +1,32 @@
+<div style="display: flex;">
+<app-admin-navbar></app-admin-navbar>
+
+<div>
+  
+</div>
+<div class="form">
+    <div class="form-group">
+        <igx-select #select [(ngModel)]="EmployeC" >
+            <label igxLabel>nom et prénom des employe qui n'ont pas un compte</label>
+            <igx-select-item *ngFor="let item of Employees" [value]="item" required>
+                {{item.nomPrenom}}
+            </igx-select-item>
+        </igx-select>
+    </div>
+    <div class="form-group">
+        <igx-input-group>
+      <label igxLabel for="email">Adresse électronique:</label>
+      <input igxInput type="email" id="email" name="email" [(ngModel)]="Employe.email" >
+        </igx-input-group>
+    </div>
+    <div class="form-group">
+        <igx-input-group>
+      <label igxLabel for="password">Mot de passe:</label>
+      <input igxInput type="password" id="password" name="password" [(ngModel)]="Employe.password" >
+        </igx-input-group>  
+    </div>
+    <button igxButton (click)="AjoutCompte()">ajouter</button>
+  </div>
+  
+
+</div>

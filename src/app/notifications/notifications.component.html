@@ -1,0 +1,24 @@
+<div class="notifi-box">
+<div class="h2Container">
+Notifications
+</div>
+<div class="List">
+    <div  *ngFor="let i of data"> 
+        <div [ngClass]="!i.vu ? 'Notseen' : ''" class="notifi-item" (click)="goToNotifRedirect(i.message,i.id)">
+            <div  class="text">
+            <div >
+               <div *ngIf="!i.vu"  class="seen"></div>   
+                <h4>{{i.message}}</h4>
+            </div>    
+            <div style="display: flex; justify-content: space-between;">
+            <p  >{{formatDate(i.date)}}</p>
+            <p  >{{i.temp}}</p>
+           </div>
+            </div>
+        </div>  
+    </div>
+</div>
+</div>
+
+
+

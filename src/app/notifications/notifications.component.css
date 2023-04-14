@@ -1,0 +1,92 @@
+.menu{
+         background-color: aliceblue;
+         width: 400px;
+         position: absolute;
+         
+         z-index: 99;
+         border-radius: 10px;
+         height: 500px;
+         }
+
+
+
+
+.List{
+    display: flex;
+    flex-direction: column;
+   
+}
+
+/*******************************************************************************************************************/
+.notifi-box {
+	width: 350px;
+	position: absolute;
+    height: 500px;
+    top: 50px;
+	right: 180px;
+    overflow:auto;
+   background-color: white;
+   border-radius: 10px;
+	transition: 1s opacity, 250ms height;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    z-index: 99;
+}
+
+.notifi-box .h2Container {
+    width: 100%;
+    height: 40px;
+	padding: 10px;
+    font-size: 14px;
+	border-bottom: 1px solid #999;
+	color: #999;
+}
+
+.notifi-item {
+	border-bottom: 1px solid #eee;
+	padding: 10px 3px; 
+	cursor: pointer;
+}
+.notifi-item:hover {
+	background-color: #eee;
+}
+.Notseen{
+	padding-left: 30px;
+    background-color: #fffcfcb1;
+}
+.notifi-item .text div h4 {
+	color: #000000;
+	font-size: 16px;
+	margin-top: 5px;
+}
+.notifi-item .text div p {
+	color: #aaa;
+	font-size: 12px;
+}
+.seen{
+    position: relative;
+    width: 8px;
+    height: 8px;
+    border-radius: 8px;
+    background-color: blue;
+    margin: 5px 15px auto ;
+    top: 30px;
+    left: -30px;
+}
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+    }
+    
+    ::-webkit-scrollbar-track {
+    border: 1px solid rgb(214, 214, 213);
+    border-radius: 10px;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+    background: rgb(173, 173, 173);  
+    border-radius: 10px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+    background: rgb(112, 106, 106);  
+    }

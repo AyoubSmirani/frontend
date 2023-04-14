@@ -1,0 +1,83 @@
+<div class="tableContainer">
+    <table>
+        <caption>la liste des demandes du congées</caption>
+        <thead >
+          <tr>
+          
+            <th scope="col">matricule</th>
+            <th scope="col">nom et prénom</th>
+            <th scope="col">image</th>
+            <th scope="col">début de congée</th>  
+            <th scope="col">fin de congée</th>
+            <th scope="col">type de congée</th>
+            <th scope="col">justification</th>  
+            <th scope="col">réponse</th>
+            <th scope="col">action</th>
+          </tr>
+        </thead>
+        <tbody >
+          <tr *ngFor="let i of data | paginate: { itemsPerPage: perPage, currentPage: currentPage, totalItems: totalRecords }" >
+            
+            <td data-label="titre">{{i.matricule}}</td>
+            <td data-label="nom et prénom">{{i.nomPrenom}}</td>
+            <td data-label="image"  ><img style="width: 50px; height: 50px; border-radius: 50px;" [src]="'http://127.0.0.1:5000/getImage/' + i.image" /></td>
+            <td data-label="début de congée">{{formatDate(i.dateD)}}</td>
+            <td data-label="fin de congée">{{formatDate(i.dateF)}}</td>
+            <td data-label="type de congée">{{i.type}}</td>
+            <td data-label="justification"><button igxButton class="btn" (click)="toggleContent(i.justification)">voir</button></td>
+            <td data-label="réponse" style="display: flex; justify-content: space-around; ">{{i.confirmation}} 
+                <div [ngSwitch]="i.confirmation">
+                    
+                    <div *ngSwitchCase="'refusé'" ><i-bs name="x-circle-fill" style="color: red;" width="25" height="25"></i-bs></div>
+                    <div *ngSwitchCase="'en attente'"><div class="lds-facebook"><div></div><div></div><div></div></div></div>
+                    <div *ngSwitchCase="'confirmé par le chef'"> <i-bs name="check-circle-fill"  width="25" style="color: green;" height="25"></i-bs></div>
+                </div>
+                
+                 </td>
+            <td *ngIf="i.confirmation === 'en attente'" data-label="action">
+              <div style="display: flex;">
+                <button class="action AcceptBtn" (click)="dialog1.open()" >accepter</button>
+                <button  class="action RefuseBtn" (click)="dialog2.open()" >Refuser</button> 
+              </div>  
+            </td>
+
+
+            <igx-dialog #dialog1 title="Confirmation"
+            leftButtonLabel="Cancel"
+            (leftButtonSelect)="dialog1.close()"
+            rightButtonLabel="OK"
+            (rightButtonSelect)="repondre(i.matricule,i.id,'confirmé par le chef',true)"
+            message="vous étes sure que vous voulez accepter la demande?"
+            leftButtonColor="black"
+            leftButtonBackgroundColor="#0091FF"
+            rightButtonColor="black"
+            rightButtonBackgroundColor="#0091FF"
+            >
+           </igx-dialog>
+
+           <igx-dialog #dialog2 title="Confirmation"
+            leftButtonLabel="Cancel"
+            (leftButtonSelect)="dialog2.close()"
+            rightButtonLabel="OK"
+            (rightButtonSelect)="repondre(i.matricule,i.id,'refusé',false)"
+            message="vous étes sure que vous voulez refuser la demande?"
+            leftButtonColor="black"
+            leftButtonBackgroundColor="#0091FF"
+            rightButtonColor="black"
+            rightButtonBackgroundColor="#0091FF"
+            >
+           </igx-dialog>
+
+          </tr>
+         
+        </tbody>
+      </table>
+
+      <div class="paginateContainer">
+        <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
+        </div>
+    </div>
+ 
+
+
+
