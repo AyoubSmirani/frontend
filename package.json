@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "build": "ng build --prod --output-path=/vercel/path0/dist",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "npm":"npm install"
